@@ -1,0 +1,40 @@
+
+@startuml
+!theme vibrant
+
+actor "👤 사용자" as User
+
+node "사용자 기기" as UserDevice {
+  component "🌐 웹 브라우저" as Browser
+}
+
+node "프론트엔드 서버/환경" as FrontendServer {
+  component "🚀 Next.js (React)" as FrontEnd
+}
+
+node "백엔드 API 서버" as BackendServer {
+  component "🐍 FastAPI" as BackEnd
+}
+
+package "외부 메일 서비스" as ExternalMailServices {
+  package "Google" {
+    component "📨 Google SMTP" as GoogleSMTP
+    component "📥 Google IMAP" as GoogleIMAP
+  }
+  package "Naver" {
+    component "📨 Naver SMTP" as NaverSMTP
+    component "📥 Naver IMAP" as NaverIMAP
+  }
+}
+
+User --> Browser : 접속
+Browser <--> FrontEnd : 상호작용
+
+FrontEnd --> BackEnd : HTTP API 요청
+
+BackEnd --> GoogleSMTP : SMTP 프로토콜
+BackEnd --> GoogleIMAP : IMAP 프로토콜
+BackEnd --> NaverSMTP : SMTP 프로토콜
+BackEnd --> NaverIMAP : IMAP 프로토콜
+
+@enduml

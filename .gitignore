@@ -1,0 +1,10 @@
+.idea/
+.venv/
+__pycache__/
+.qodo
+*.pyc
+*.pyo
+*.pyd
+*.sh
+*.bat
+.env
